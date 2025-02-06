@@ -5,9 +5,10 @@ const timeDisplay = document.getElementById("time");
 const userInput = document.getElementById("user-input");
 const cpmDisplay = document.getElementById("cpm");
 const accuracyDisplay = document.getElementById("accuracy");
+const restart = document.getElementById("restart");
 
 let originalText = "";
-let timer = 10;
+let timer = 20;
 let interval;
 let totalCharsTyped = 0;
 let correctChars = 0;
@@ -24,7 +25,8 @@ function startTimer() {
     interval = setInterval(() => {
         timer--;
         timeDisplay.textContent = timer;
-        if (timer === 0) {
+        console.log("Timer:", timer);
+        if (timer <= 0) {
             clearInterval(interval);
             endTest();
         }
@@ -32,7 +34,7 @@ function startTimer() {
 }
 
 userInput.addEventListener("input", () => {
-    if (timer === 10) startTimer();
+    if (timer === 20) startTimer();
 
     const typedText = userInput.value;
     totalCharsTyped = typedText.length;
@@ -53,8 +55,10 @@ userInput.addEventListener("input", () => {
 });
 
 function resetStats() {
-    timer = 60;
+    timer = 20;
     timeDisplay.textContent = timer;
+    cpmDisplay.textContent = 0;
+    accuracyDisplay.textContent = "0%";
 }
 
 function updateStats() {
@@ -66,6 +70,8 @@ function updateStats() {
 
 function endTest() {
     userInput.disabled = true;
-    saveResults();
+    //saveResults();
 }
+restart.addEventListener("click", startTest);
+
 startTest();
