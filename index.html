@@ -10,7 +10,11 @@
 <body>
     <div class="container">
         <h1>Typing Speed Test</h1>
-        <p>Time Left: <span id="time">60</span> seconds</p>
+        <div id="stats">
+            <p>Time Left: <span id="time">60</span> seconds</p>
+            <p>Char per min: <span id="cpm">0</span></p>
+            <p>Accuracy: <span id="accuracy">0%</span></p>
+        </div>
         <p id="text-display"></p>
         <textarea id="user-input" placeholder="Start typing here..." autofocus></textarea>
     </div>

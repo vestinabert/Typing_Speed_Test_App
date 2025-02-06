@@ -3,9 +3,11 @@ import { fetchText } from './api.js';
 const textDisplay = document.getElementById("text-display");
 const timeDisplay = document.getElementById("time");
 const userInput = document.getElementById("user-input");
+const cpmDisplay = document.getElementById("cpm");
+const accuracyDisplay = document.getElementById("accuracy");
 
 let originalText = "";
-let timer = 60;
+let timer = 10;
 let interval;
 let totalCharsTyped = 0;
 let correctChars = 0;
@@ -13,7 +15,7 @@ let correctChars = 0;
 async function startTest() {
     originalText = await fetchText();
     textDisplay.innerHTML = originalText.split("").map(char => `<span>${char}</span>`).join("");
-    userInput.disabled = true;
+    userInput.disabled = false;
     userInput.value = "";
     resetStats();
 }
@@ -30,7 +32,7 @@ function startTimer() {
 }
 
 userInput.addEventListener("input", () => {
-    if (timer === 60) startTimer();
+    if (timer === 10) startTimer();
 
     const typedText = userInput.value;
     totalCharsTyped = typedText.length;
@@ -46,12 +48,20 @@ userInput.addEventListener("input", () => {
             textSpans[i].style.color = "red";
         }
     }
+    updateStats();
 
 });
 
 function resetStats() {
     timer = 60;
     timeDisplay.textContent = timer;
+}
+
+function updateStats() {
+    const accuracy = totalCharsTyped > 0 ? Math.round((correctChars / totalCharsTyped) * 100) : 0;
+
+    cpmDisplay.textContent = correctChars;
+    accuracyDisplay.textContent = accuracy + "%";
 }
 
 function endTest() {
