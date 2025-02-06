@@ -13,6 +13,9 @@ let correctChars = 0;
 async function startTest() {
     originalText = await fetchText();
     textDisplay.innerHTML = originalText.split("").map(char => `<span>${char}</span>`).join("");
+    userInput.disabled = true;
+    userInput.value = "";
+    resetStats();
 }
 
 function startTimer() {
@@ -21,6 +24,7 @@ function startTimer() {
         timeDisplay.textContent = timer;
         if (timer === 0) {
             clearInterval(interval);
+            endTest();
         }
     }, 1000);
 }
@@ -33,7 +37,6 @@ userInput.addEventListener("input", () => {
 
     const textSpans = textDisplay.querySelectorAll("span");
     correctChars = 0;
-    console.log(originalText[0]);
 
     for (let i = 0; i < typedText.length; i++) {
         if (typedText[i] === originalText[i]) {
@@ -45,4 +48,14 @@ userInput.addEventListener("input", () => {
     }
 
 });
+
+function resetStats() {
+    timer = 60;
+    timeDisplay.textContent = timer;
+}
+
+function endTest() {
+    userInput.disabled = true;
+    saveResults();
+}
 startTest();
