@@ -1,9 +1,10 @@
 import { fetchText } from './api.js';
+import { saveResults } from './storage.js';
 
 const textDisplay = document.getElementById("text-display");
 const timeDisplay = document.getElementById("time");
 const userInput = document.getElementById("user-input");
-const cpmDisplay = document.getElementById("cpm");
+const wpmDisplay = document.getElementById("wpm");
 const accuracyDisplay = document.getElementById("accuracy");
 const restart = document.getElementById("restart");
 
@@ -12,6 +13,7 @@ let timer = 20;
 let interval;
 let totalCharsTyped = 0;
 let correctChars = 0;
+let timerStarted = false;
 
 async function startTest() {
     originalText = await fetchText();
@@ -22,10 +24,12 @@ async function startTest() {
 }
 
 function startTimer() {
+    if (timerStarted) return;
+    timerStarted = true;
+
     interval = setInterval(() => {
         timer--;
         timeDisplay.textContent = timer;
-        console.log("Timer:", timer);
         if (timer <= 0) {
             clearInterval(interval);
             endTest();
@@ -34,7 +38,10 @@ function startTimer() {
 }
 
 userInput.addEventListener("input", () => {
-    if (timer === 20) startTimer();
+    if (!timerStarted) startTimer();
+});
+
+userInput.addEventListener("input", () => {
 
     const typedText = userInput.value;
     totalCharsTyped = typedText.length;
@@ -57,20 +64,25 @@ userInput.addEventListener("input", () => {
 function resetStats() {
     timer = 20;
     timeDisplay.textContent = timer;
-    cpmDisplay.textContent = 0;
+    wpmDisplay.textContent = 0;
     accuracyDisplay.textContent = "0%";
+    timerStarted = false;
+
+    if (interval) {
+        clearInterval(interval);
+        interval = null;
+    }
 }
 
 function updateStats() {
     const accuracy = totalCharsTyped > 0 ? Math.round((correctChars / totalCharsTyped) * 100) : 0;
-
-    cpmDisplay.textContent = correctChars;
+    wpmDisplay.textContent = correctChars;
     accuracyDisplay.textContent = accuracy + "%";
 }
 
 function endTest() {
     userInput.disabled = true;
-    //saveResults();
+    saveResults();
 }
 restart.addEventListener("click", startTest);
 

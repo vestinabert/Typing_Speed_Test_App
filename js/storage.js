@@ -9,3 +9,7 @@ export function saveResults() {
     results.push(newResult);
     localStorage.setItem("typingResults", JSON.stringify(results));
 }
+
+export function getResults() {
+    return JSON.parse(localStorage.getItem("typingResults")) || [];
+}
