@@ -1,15 +1,16 @@
 import { fetchText } from './api.js';
 import { saveResults, getResults } from './storage.js';
 
+const textContainer = document.getElementById("text-container");
 const textDisplay = document.getElementById("text-display");
+const cursor = document.getElementById("cursor");
 const timeDisplay = document.getElementById("time");
-const userInput = document.getElementById("user-input");
 const wpmDisplay = document.getElementById("wpm");
 const accuracyDisplay = document.getElementById("accuracy");
 const restart = document.getElementById("restart");
 
 let originalText = "";
-let timer = 20;
+let testDuration = 20;
 let interval;
 let totalCharsTyped = 0;
 let correctChars = 0;
@@ -18,8 +19,6 @@ let timerStarted = false;
 async function startTest() {
     originalText = await fetchText();
     textDisplay.innerHTML = originalText.split("").map(char => `<span>${char}</span>`).join("");
-    userInput.disabled = false;
-    userInput.value = "";
     resetStats();
 }
 
@@ -37,11 +36,11 @@ function startTimer() {
     }, 1000);
 }
 
-userInput.addEventListener("input", () => {
+textContainer.addEventListener("keyup", () => {
     if (!timerStarted) startTimer();
 });
 
-userInput.addEventListener("input", () => {
+textContainer.addEventListener("keyup", () => {
 
     const typedText = userInput.value;
     totalCharsTyped = typedText.length;
@@ -62,8 +61,8 @@ userInput.addEventListener("input", () => {
 });
 
 function resetStats() {
-    timer = 20;
-    timeDisplay.textContent = timer;
+    testDuration = 20;
+    timeDisplay.textContent = testDuration;
     wpmDisplay.textContent = 0;
     accuracyDisplay.textContent = "0%";
     timerStarted = false;
