@@ -1,5 +1,5 @@
 import { fetchText } from './api.js';
-import { saveResults } from './storage.js';
+import { saveResults, getResults } from './storage.js';
 
 const textDisplay = document.getElementById("text-display");
 const timeDisplay = document.getElementById("time");
@@ -87,3 +87,38 @@ function endTest() {
 restart.addEventListener("click", startTest);
 
 startTest();
+
+
+
+
+const switchToggle = document.getElementById("view-switch");
+const testView = document.getElementById("test-view");
+const resultsView = document.getElementById("results-view");
+const resultsTable = document.getElementById("results-table");
+
+function loadResults() {
+    const results = getResults();
+    resultsTable.innerHTML = "";
+
+    results.forEach(result => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${result.date}</td>
+            <td>${result.wpm}</td>
+            <td>${result.accuracy}%</td>
+        `;
+        resultsTable.appendChild(row);
+    });
+
+}
+
+switchToggle.addEventListener("change", () => {
+    if (switchToggle.checked) {
+        testView.classList.add("d-none");
+        resultsView.classList.remove("d-none");
+        loadResults();
+    } else {
+        testView.classList.remove("d-none");
+        resultsView.classList.add("d-none");
+    }
+});
