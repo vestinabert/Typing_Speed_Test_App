@@ -12,21 +12,50 @@
 <body>
     <div class="container d-flex flex-column align-items-center justify-content-center min-vh-100">
         <div class="card shadow p-4 text-center" style="max-width: 650px; width: 100%;">
-            <h1 class="mb-3">Typing Speed Test</h1>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h1 class="mb-0">Typing Speed Test</h1>
 
-            <div id="stats" class="d-flex justify-content-between bg-light p-3 rounded">
-                <p class="mb-0">⏳ Time Left: <span id="time">60</span> sec</p>
-                <p class="mb-0">⌨️ CPM: <span id="cpm">0</span></p>
-                <p class="mb-0">🎯 Accuracy: <span id="accuracy">0%</span></p>
+                <!-- Switch Toggle -->
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="view-switch">
+                    <label class="form-check-label" for="view-switch">View Results</label>
+                </div>
             </div>
 
-            <p id="text-display" class="mt-3 p-3 bg-light rounded">
-                The mysterious lighthouse stood tall against the crashing waves as a fierce dragon soared above...
-            </p>
+            <!-- Test View -->
+            <div id="test-view">
+                <div id="stats" class="d-flex justify-content-between bg-light p-3 rounded">
+                    <p class="mb-0">⏳ Time Left: <span id="time">60</span> sec</p>
+                    <p class="mb-0">⌨️ WPM: <span id="wpm">0</span></p>
+                    <p class="mb-0">🎯 Accuracy: <span id="accuracy">0%</span></p>
+                </div>
 
-            <textarea id="user-input" class="form-control mt-3" placeholder="Start typing here..." autofocus></textarea>
+                <p id="text-display" class="mt-3 p-3 bg-light rounded">
+                    The mysterious lighthouse stood tall against the crashing waves as a fierce dragon soared above...
+                </p>
 
-            <button id="restart" class="btn btn-primary mt-3">Restart</button>
+                <textarea id="user-input" class="form-control mt-3" placeholder="Start typing here..."
+                    autofocus></textarea>
+
+                <button id="restart" class="btn btn-primary mt-3">Restart</button>
+            </div>
+
+            <!-- Results View (Hidden by Default) -->
+            <div id="results-view" class="d-none">
+                <h2 class="mt-3">Test Results</h2>
+                <table class="table mt-3">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>WPM</th>
+                            <th>Accuracy</th>
+                        </tr>
+                    </thead>
+                    <tbody id="results-table">
+                        <!-- Results -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
