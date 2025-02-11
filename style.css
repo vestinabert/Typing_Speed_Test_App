@@ -26,3 +26,18 @@
 .letter.incorrect {
     color: red;
 }
+
+#text-container {
+    position: relative;
+    padding: 10px;
+    height: 120px;
+    overflow: hidden;
+    text-align: left;
+    outline: none;
+}
+
+#text-display {
+    line-height: 2;
+    font-size: 1.2rem;
+    transition: transform 0.1s;
+}
