@@ -1,12 +1,12 @@
 export function saveResults() {
-    const results = JSON.parse(localStorage.getItem("typingResults")) || [];
-    const newResult = {
-        wpm: document.getElementById("wpm").textContent,
-        accuracy: document.getElementById("accuracy").textContent.replace("%", ""),
-        date: new Date().toLocaleString()
-    };
-
-    results.push(newResult);
+    const wpm = document.getElementById("wpm").textContent;
+    const accuracy = document.getElementById("accuracy").textContent;
+    const results = getResults();
+    results.unshift({
+        date: new Date().toLocaleString(),
+        wpm,
+        accuracy,
+    });
     localStorage.setItem("typingResults", JSON.stringify(results));
 }
 

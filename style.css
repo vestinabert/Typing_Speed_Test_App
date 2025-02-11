@@ -1,0 +1,43 @@
+#cursor {
+    position: absolute;
+    width: 2px;
+    height: 1.2rem;
+    background: black;
+    animation: blink 1s step-end infinite;
+    pointer-events: none;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.letter.correct {
+    color: green;
+}
+
+.letter.incorrect {
+    color: red;
+}
+
+#text-container {
+    position: relative;
+    padding: 10px;
+    height: 120px;
+    overflow: hidden;
+    text-align: left;
+    outline: none;
+}
+
+#text-display {
+    line-height: 2;
+    font-size: 1.2rem;
+    transition: transform 0.1s;
+}
