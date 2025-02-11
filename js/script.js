@@ -19,6 +19,10 @@ let timerStarted = false;
 async function startTest() {
     originalText = await fetchText();
     textDisplay.innerHTML = originalText.split("").map(char => `<span>${char}</span>`).join("");
+    const firstLetter = textDisplay.firstChild;
+    if (firstLetter) {
+        firstLetter.classList.add("current");
+    }
     resetStats();
 }
 
