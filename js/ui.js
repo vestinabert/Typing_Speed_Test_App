@@ -1,4 +1,8 @@
-export function updateStats(wpmDisplay, accuracyDisplay, correctChars, totalCharsTyped, correctWords, elapsedTime) {
+import { getTimeLeft } from "./timer.js";
+import { TEST_DURATION } from "./config.js";
+
+export function updateStats(wpmDisplay, accuracyDisplay, correctChars, totalCharsTyped, correctWords) {
+    const elapsedTime = TEST_DURATION - getTimeLeft();
     const accuracy = totalCharsTyped > 0 ? Math.round((correctChars / totalCharsTyped) * 100) : 0;
     const wpm = elapsedTime > 0 ? Math.round((correctWords * 60) / elapsedTime) : 0;
     wpmDisplay.textContent = wpm;

@@ -8,7 +8,7 @@ export function loadResults() {
 
     results.forEach(({ date, wpm, accuracy }) => {
         const row = document.createElement("tr");
-        row.innerHTML = `<td>${date}</td><td>${wpm}</td><td>${accuracy}%</td>`;
+        row.innerHTML = `<td>${date}</td><td>${wpm}</td><td>${accuracy}</td>`;
         resultsTable.appendChild(row);
     });
 }

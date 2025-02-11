@@ -14,11 +14,19 @@ export function startTimer() {
     interval = setInterval(() => {
         timeLeft--;
         timeDisplay.textContent = timeLeft;
-        if (timeLeft <= 0) {
+        if (isTimeUp()) {
             clearInterval(interval);
             saveResults();
         }
     }, 1000);
+}
+
+export function isTimeUp() {
+    return timeLeft <= 0;
+}
+
+export function getTimeLeft() {
+    return timeLeft;
 }
 
 export function resetTimer() {
