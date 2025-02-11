@@ -1,4 +1,4 @@
-import { updateStats } from "./ui.js";
+import { updateCursor, updateStats, scrollIfNeeded } from "./ui.js";
 import { startTimer } from "./timer.js";
 import { getOriginalText } from "./typingTest.js";
 
@@ -37,6 +37,7 @@ export function processInput(key) {
     if (key === " ") checkWordCompletion();
 
     updateStats(wpmDisplay, accuracyDisplay, correctChars, totalCharsTyped, correctWords);
+    scrollIfNeeded();
 }
 
 export function processBackspace() {
@@ -64,7 +65,6 @@ export function processBackspace() {
 }
 
 function checkWordCompletion() {
-    console.log("checkWordCompletion");
     const originalWords = getOriginalText().split(" ");
     const typedWords = textDisplay.textContent.slice(0, currentIndex).split(" ");
 
@@ -73,13 +73,12 @@ function checkWordCompletion() {
     }
 }
 
-
 export function resetStats() {
     currentIndex = 0;
     correctChars = 0;
     totalCharsTyped = 0;
     correctWords = 0;
-    //resetTimer();
     wpmDisplay.textContent = 0;
     accuracyDisplay.textContent = "0%";
+    updateCursor(textDisplay);
 }

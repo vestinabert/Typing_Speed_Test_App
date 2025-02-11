@@ -1,10 +1,11 @@
 #cursor {
     position: absolute;
     width: 2px;
-    height: 1.2rem;
+    height: 1.8rem;
     background: black;
     animation: blink 1s step-end infinite;
     pointer-events: none;
+    display: none;
 }
 
 @keyframes blink {
@@ -29,7 +30,6 @@
 
 #text-container {
     position: relative;
-    padding: 10px;
     height: 120px;
     overflow: hidden;
     text-align: left;
@@ -37,7 +37,7 @@
 }
 
 #text-display {
-    line-height: 2;
-    font-size: 1.2rem;
+    line-height: 1.5;
+    font-size: 1.6rem;
     transition: transform 0.1s;
 }

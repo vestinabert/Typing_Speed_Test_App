@@ -2,6 +2,7 @@ import { startTest, focusTypingArea, highlightFirstLetter } from "./typingTest.j
 import { setupInputHandler } from "./inputHandler.js";
 import { setupSwitchToggle } from "./switchView.js";
 import { resetTimer } from "./timer.js";
+import { resetStats } from "./stats.js";
 
 const restartButton = document.getElementById("restart");
 
@@ -11,6 +12,7 @@ async function restartTest() {
     await startTest();
     highlightFirstLetter();
     focusTypingArea();
+    resetStats();
 }
 
 // Initializes the app
