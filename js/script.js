@@ -23,8 +23,22 @@ async function startTest() {
     if (firstLetter) {
         firstLetter.classList.add("current");
     }
+    updateCursor();
+    textContainer.focus();
     resetStats();
 }
+function updateCursor() {
+    const currentLetter = document.querySelector(".letter.current");
+    if (currentLetter) {
+      const letterRect = currentLetter.getBoundingClientRect();
+      const containerRect = textContainer.getBoundingClientRect();
+      cursor.style.top = (letterRect.top - containerRect.top) + "px";
+      cursor.style.left = (letterRect.left - containerRect.left) + "px";
+      cursor.style.display = "block";
+    } else {
+      cursor.style.display = "none";
+    }
+  }
 
 function startTimer() {
     if (timerStarted) return;
