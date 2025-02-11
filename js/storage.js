@@ -6,7 +6,7 @@ export function saveResults() {
         date: new Date().toLocaleString()
     };
 
-    results.push(newResult);
+    results.unshift(newResult);
     localStorage.setItem("typingResults", JSON.stringify(results));
 }
 
