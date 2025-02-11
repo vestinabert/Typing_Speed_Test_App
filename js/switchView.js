@@ -1,4 +1,5 @@
 import { loadResults } from "./results.js";
+
 const switchToggle = document.getElementById("view-switch");
 const testView = document.getElementById("test-view");
 const resultsView = document.getElementById("results-view");

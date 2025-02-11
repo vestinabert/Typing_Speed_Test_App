@@ -1,20 +1,18 @@
 import { fetchText } from './api.js';
-import { saveResults, getResults } from './storage.js';
+import { startTimer, resetTimer } from './timer.js';
 import { updateStats, updateCursor } from './ui.js'
 import { setupSwitchToggle } from './switchView.js';
+import { TEST_DURATION } from './config.js';
 
 // DOM elements
 const textContainer = document.getElementById("text-container");
 const textDisplay = document.getElementById("text-display");
-const timeDisplay = document.getElementById("time");
 const wpmDisplay = document.getElementById("wpm");
 const accuracyDisplay = document.getElementById("accuracy");
 const restart = document.getElementById("restart");
 
 let originalText = "";
-let testDuration = 20;
-let timeLeft = testDuration;
-let interval;
+let timeLeft = TEST_DURATION;
 let totalCharsTyped = 0;
 let correctChars = 0;
 let correctWords = 0;
@@ -28,7 +26,7 @@ async function startTest() {
     resetStats();
 }
 
-function handleKeyUp(e) {
+function handleTypingInput(e) {
     console.log("hendleKeyUp");
     if (timeLeft <= 0) return;
     if (!timerStarted) startTimer();
@@ -44,19 +42,7 @@ function handleKeyUp(e) {
     updateCursor(textContainer);
 }
 
-function startTimer() {
-    console.log("startTimer");
-    timerStarted = true;
 
-    interval = setInterval(() => {
-        timeLeft--;
-        timeDisplay.textContent = timeLeft;
-        if (timeLeft <= 0) {
-            clearInterval(interval);
-            endTest();
-        }
-    }, 1000);
-}
 
 function processInput(key) {
     console.log("processInput");
@@ -79,12 +65,12 @@ function processInput(key) {
         letters[currentIndex].classList.add("current");
     }
     else {
-        endTest();
+        console.log("processInput else");
     }
     if (key === " ") {
         checkWordCompletion();
     }
-    updateStats(wpmDisplay, accuracyDisplay, correctChars, totalCharsTyped, correctWords, testDuration - timeLeft);
+    updateStats(wpmDisplay, accuracyDisplay, correctChars, totalCharsTyped, correctWords, TEST_DURATION - timeLeft);
 }
 
 function checkWordCompletion() {
@@ -118,40 +104,27 @@ function processBackspace() {
 
     currentLetterSpan.classList.add("current");
 
-    updateStats(wpmDisplay, accuracyDisplay, correctChars, totalCharsTyped, correctWords, testDuration - timeLeft);
+    updateStats(wpmDisplay, accuracyDisplay, correctChars, totalCharsTyped, correctWords, TEST_DURATION - timeLeft);
 }
 
 function resetStats() {
     currentIndex = 0;
     correctChars = 0;
+    resetTimer();
     const firstLetter = textDisplay.firstChild;
     if (firstLetter) {
         firstLetter.classList.add("current");
     }
     updateCursor(textContainer);
     textContainer.focus();
-    console.log("resetStats");
-    testDuration = 20;
-    timeLeft = testDuration;
-    timeDisplay.textContent = testDuration;
     wpmDisplay.textContent = 0;
     accuracyDisplay.textContent = "0%";
-    timerStarted = false;
     totalCharsTyped = 0;
-
-    if (interval) {
-        clearInterval(interval);
-        interval = null;
-    }
-}
-
-function endTest() {
-    saveResults(wpmDisplay.textContent, accuracyDisplay.textContent);
 }
 
 setupSwitchToggle();
 
-textContainer.addEventListener("keyup", handleKeyUp);
+textContainer.addEventListener("keyup", handleTypingInput);
 
 restart.addEventListener("click", startTest);
 
