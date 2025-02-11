@@ -11,14 +11,17 @@ const restart = document.getElementById("restart");
 
 let originalText = "";
 let testDuration = 20;
+let timeLeft = testDuration;
 let interval;
 let totalCharsTyped = 0;
 let correctChars = 0;
 let timerStarted = false;
 
+let currentIndex = 0;
+
 async function startTest() {
     originalText = await fetchText();
-    textDisplay.innerHTML = originalText.split("").map(char => `<span>${char}</span>`).join("");
+    textDisplay.innerHTML = originalText.split("").map(char => `<span class="letter">${char}</span>`).join("");
     const firstLetter = textDisplay.firstChild;
     if (firstLetter) {
         firstLetter.classList.add("current");
@@ -27,27 +30,45 @@ async function startTest() {
     textContainer.focus();
     resetStats();
 }
+
+function handleKeyUp(e) {
+    if (timeLeft <= 0) return;
+    if (!timerStarted) startTimer();
+
+    const key = e.key;
+    console.log(key);
+    if (key.length === 1) {
+        processInput(key);
+    }
+    else if (key === "Backspace") {
+        processBackspace();
+    }
+
+    updateCursor();
+}
+
+
 function updateCursor() {
     const currentLetter = document.querySelector(".letter.current");
     if (currentLetter) {
-      const letterRect = currentLetter.getBoundingClientRect();
-      const containerRect = textContainer.getBoundingClientRect();
-      cursor.style.top = (letterRect.top - containerRect.top) + "px";
-      cursor.style.left = (letterRect.left - containerRect.left) + "px";
-      cursor.style.display = "block";
+        const letterRect = currentLetter.getBoundingClientRect();
+        const containerRect = textContainer.getBoundingClientRect();
+        cursor.style.top = (letterRect.top - containerRect.top) + "px";
+        cursor.style.left = (letterRect.left - containerRect.left) + "px";
+        cursor.style.display = "block";
     } else {
-      cursor.style.display = "none";
+        cursor.style.display = "none";
     }
-  }
+}
 
 function startTimer() {
     if (timerStarted) return;
     timerStarted = true;
 
     interval = setInterval(() => {
-        timer--;
-        timeDisplay.textContent = timer;
-        if (timer <= 0) {
+        timeLeft--;
+        timeDisplay.textContent = timeLeft;
+        if (timeLeft <= 0) {
             clearInterval(interval);
             endTest();
         }
@@ -58,25 +79,53 @@ textContainer.addEventListener("keyup", () => {
     if (!timerStarted) startTimer();
 });
 
-textContainer.addEventListener("keyup", () => {
+function processInput(key) {
+    const letters = document.querySelectorAll(".letter");
+    if (currentIndex >= letters.length) return;
 
-    const typedText = userInput.value;
-    totalCharsTyped = typedText.length;
+    const currentLetterSpan = letters[currentIndex];
 
-    const textSpans = textDisplay.querySelectorAll("span");
-    correctChars = 0;
-
-    for (let i = 0; i < typedText.length; i++) {
-        if (typedText[i] === originalText[i]) {
-            textSpans[i].style.color = "green";
-            correctChars++;
-        } else {
-            textSpans[i].style.color = "red";
-        }
+    if (key === currentLetterSpan.textContent) {
+        currentLetterSpan.classList.add("correct");
+        correctChars++;
+    } else {
+        currentLetterSpan.classList.add("incorrect");
     }
-    updateStats();
 
-});
+    currentLetterSpan.classList.remove("current");
+    currentIndex++;
+
+    if (currentIndex < letters.length) {
+        letters[currentIndex].classList.add("current");
+    }
+    else {
+        endTest();
+    }
+
+    updateStats();
+}
+
+function processBackspace() {
+    const letters = document.querySelectorAll(".letter");
+    if (currentIndex === 0) return;
+
+    if (currentIndex < letters.length) {
+        letters[currentIndex].classList.remove("current");
+    }
+
+    currentIndex--;
+    const currentLetterSpan = letters[currentIndex];
+
+    if (currentLetterSpan.classList.contains("correct")) {
+        correctCHars--;
+    }
+
+    currentLetterSpan.classList.remove("correct", "incorrect");
+
+    currentLetterSpan.classList.add("current");
+
+    updateStats();
+}
 
 function resetStats() {
     testDuration = 20;
@@ -98,7 +147,6 @@ function updateStats() {
 }
 
 function endTest() {
-    userInput.disabled = true;
     saveResults();
 }
 restart.addEventListener("click", startTest);
@@ -139,3 +187,6 @@ switchToggle.addEventListener("change", () => {
         resultsView.classList.add("d-none");
     }
 });
+
+
+textContainer.addEventListener("keyup", handleKeyUp);
