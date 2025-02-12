@@ -103,4 +103,8 @@ export function resetStats() {
     correctWords = 0;
     currentWordIndex = 0;
     currentLetterIndex = 0;
+
+    // Remove all classes from words and letters
+    document.querySelectorAll(".word").forEach(word => word.classList.remove("current"));
+    document.querySelectorAll(".letter").forEach(letter => letter.classList.remove("correct", "incorrect", "current"));
 }

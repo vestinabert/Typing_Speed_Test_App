@@ -1,10 +1,28 @@
 import { fetchText } from "./api.js";
 import { resetStats } from "./stats.js";
+import { resetTimer } from "./timer.js";
+import { resetUI, updateCursor } from "./ui.js";
 
 const textContainer = document.getElementById("text-container");
 const textDisplay = document.getElementById("text-display");
 
 let originalText = "";
+
+// Resets and starts a new test
+export async function restartTest() {
+    await startTest();
+    resetTest();
+}
+// Resets test
+export function resetTest() {
+    resetTimer();
+    resetStats();
+    highlightFirstWord();
+    highlightFirstLetter();
+    focusTypingArea();
+    resetUI();
+    updateCursor();
+}
 
 export async function startTest() {
     originalText = await fetchText();
