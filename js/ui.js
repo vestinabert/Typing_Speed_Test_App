@@ -17,7 +17,6 @@ export function updateCursor(textContainer) {
     if (!cursor) return;
 
     const currentLetter = document.querySelector(".letter.current");
-    console.log("currentLetter", currentLetter);
     if (currentLetter) {
         const letterRect = currentLetter.getBoundingClientRect();
         const containerRect = textContainer.getBoundingClientRect();

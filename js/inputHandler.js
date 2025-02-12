@@ -4,7 +4,6 @@ import { isTimeUp } from "./timer.js";
 const textContainer = document.getElementById("text-container");
 
 function handleTypingInput(e) {
-    console.log("handleTypingInput");
     if (isTimeUp()) return;
 
     if (e.key.length === 1) {
@@ -17,6 +16,5 @@ function handleTypingInput(e) {
 }
 
 export function setupInputHandler() {
-    console.log("setupInputHandler");
     textContainer.addEventListener("keyup", handleTypingInput);
 }

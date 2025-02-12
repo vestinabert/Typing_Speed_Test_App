@@ -8,9 +8,11 @@ let originalText = "";
 
 export async function startTest() {
     originalText = await fetchText();
-    textDisplay.innerHTML = originalText.split("")
-        .map(char => `<span class="letter">${char}</span>`)
-        .join("");
+
+    // Wrap each word in a <div class="word"> and each letter in <span class="letter">
+    textDisplay.innerHTML = originalText
+        .map(word => `<div class="word">${word.split("").map(char => `<span class="letter">${char}</span>`).join("")}</div>`)
+        .join(" ");
 
     resetStats();
 }
@@ -24,6 +26,5 @@ export function focusTypingArea() {
 }
 
 export function highlightFirstLetter() {
-    console.log("highlightFirstLetter");
     textDisplay.firstChild?.classList.add("current");
 }
