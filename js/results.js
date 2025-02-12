@@ -1,9 +1,11 @@
 import { getResults } from "./storage.js";
+import { isTimeUp } from "./timer.js";
 
 const resultsTable = document.getElementById("results-table");
 const resultsEvaluation = document.getElementById("results-evaluation");
 
 export function loadResults() {
+    console.log("loadResults");
     resultsTable.innerHTML = "";
     const results = getResults();
 
@@ -13,8 +15,12 @@ export function loadResults() {
         row.innerHTML = `<td>${date}</td><td>${wpm}</td><td>${accuracy}</td>`;
         resultsTable.appendChild(row);
     });
+    if (isTimeUp()) evaluatePerformance(latestResult, results);
+}
 
-    evaluatePerformance(latestResult, results);
+export function clearPerformanceEvaluation() {
+    console.log("clearPerformanceEvaluation");
+    resultsEvaluation.textContent = "";
 }
 
 function evaluatePerformance(latestResult, previousResults) {

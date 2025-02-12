@@ -26,5 +26,14 @@ export function focusTypingArea() {
 }
 
 export function highlightFirstLetter() {
-    textDisplay.firstChild?.classList.add("current");
+    const firstLetter = document.querySelector(".word:first-child .letter:first-child");
+    if (firstLetter) {
+        firstLetter.classList.add("current");
+    }
+}
+export function highlightFirstWord() {
+    const firstWord = document.querySelector(".word:first-child");
+    if (firstWord) {
+        firstWord.classList.add("current");
+    }
 }

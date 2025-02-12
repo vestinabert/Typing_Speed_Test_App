@@ -1,6 +1,7 @@
 import { updateCursor, updateStats, scrollIfNeeded } from "./ui.js";
 import { startTimer } from "./timer.js";
 import { getOriginalText } from "./typingTest.js";
+import { clearPerformanceEvaluation } from "./results.js";
 
 const wpmDisplay = document.getElementById("wpm");
 const accuracyDisplay = document.getElementById("accuracy");
@@ -81,4 +82,5 @@ export function resetStats() {
     wpmDisplay.textContent = 0;
     accuracyDisplay.textContent = "0%";
     updateCursor(textDisplay);
+    clearPerformanceEvaluation();
 }

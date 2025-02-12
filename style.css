@@ -22,7 +22,9 @@
 div.word{
     display: inline-block;
 }
-
+.word.current {
+    color: blue;
+}
 .letter.correct {
     color: green;
 }

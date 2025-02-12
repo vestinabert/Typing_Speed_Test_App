@@ -1,4 +1,4 @@
-import { startTest, focusTypingArea, highlightFirstLetter } from "./typingTest.js";
+import { startTest, focusTypingArea, highlightFirstLetter, highlightFirstWord } from "./typingTest.js";
 import { setupInputHandler } from "./inputHandler.js";
 import { setupSwitchToggle } from "./switchView.js";
 import { resetTimer } from "./timer.js";
@@ -10,6 +10,7 @@ const restartButton = document.getElementById("restart");
 async function restartTest() {
     resetTimer();
     await startTest();
+    highlightFirstWord();
     highlightFirstLetter();
     focusTypingArea();
     resetStats();
