@@ -2,15 +2,11 @@ import { processInput, processBackspace } from "./stats.js";
 import { updateCursor } from "./ui.js";
 import { isTimeUp } from "./timer.js";
 import { restartTest, resetTest } from "./typingTest.js";
+import { switchToTestView } from "./switchView.js";
 
 const textContainer = document.getElementById("text-container");
 
 function handleTypingInput(e) {
-    if (e.key === "Enter") {
-        restartTest();
-        return;
-    }
-
     if (isTimeUp()) return;
 
     if (e.key === " ") return;
@@ -31,4 +27,12 @@ function handleTypingInput(e) {
 
 export function setupInputHandler() {
     textContainer.addEventListener("keyup", handleTypingInput);
+}
+export function setupEnterHandler() {
+    document.addEventListener("keyup", (e) => {
+        if (e.key === "Enter") {
+            restartTest();
+            switchToTestView();
+        }
+    });
 }
