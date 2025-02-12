@@ -5,7 +5,8 @@ This is a **Typing Speed Test** web application that allows users to measure the
 
 Here are some screenshots showcasing the application:
 <img width="708" alt="test" src="https://github.com/user-attachments/assets/301c9cde-684a-44ce-ad08-cf4e87de2178" />
-<img width="706" alt="results" src="https://github.com/user-attachments/assets/681b8717-eb36-44cf-9b51-2773b06148bb" />
+<img width="690" alt="results" src="https://github.com/user-attachments/assets/4ec02de6-bb6a-42c0-8217-ffa8854edce1" />
+
 
 ## Features
 - Fetches random text from an API (`https://random-word-api.herokuapp.com/word`)
