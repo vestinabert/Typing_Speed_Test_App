@@ -16,3 +16,7 @@ export function setupSwitchToggle() {
         }
     });
 }
+export function switchToResultsView() {
+    switchToggle.checked = true;
+    switchToggle.dispatchEvent(new Event("change"));
+}

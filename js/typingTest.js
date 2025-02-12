@@ -25,6 +25,5 @@ export function focusTypingArea() {
 
 export function highlightFirstLetter() {
     console.log("highlightFirstLetter");
-    console.log(textDisplay.firstChild);
     textDisplay.firstChild?.classList.add("current");
 }
