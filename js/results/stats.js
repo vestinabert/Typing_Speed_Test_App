@@ -1,5 +1,5 @@
-import { scroll } from "./ui.js";
-import { startTimer } from "./timer.js";
+import { scroll } from "../ui/ui.js";
+import { startTimer } from "../core/timer.js";
 
 let currentWordIndex = 0;
 let currentLetterIndex = 0;

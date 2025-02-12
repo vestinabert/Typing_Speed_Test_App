@@ -1,4 +1,4 @@
-import { loadResults } from "./results.js";
+import { loadResults } from "../results/results.js";
 import { focusTypingArea } from "./typingTest.js";
 
 const switchToggle = document.getElementById("view-switch");

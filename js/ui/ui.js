@@ -1,6 +1,6 @@
-import { getTimeLeft } from "./timer.js";
-import { TEST_DURATION } from "./config.js";
-import { getStats } from "./stats.js";
+import { getTimeLeft } from "../core/timer.js";
+import { TEST_DURATION } from "../config/config.js";
+import { getStats } from "../results/stats.js";
 
 const textDisplay = document.getElementById("text-display");
 const resultsEvaluation = document.getElementById("results-evaluation");

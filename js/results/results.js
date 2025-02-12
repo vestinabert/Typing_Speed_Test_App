@@ -1,5 +1,5 @@
 import { getResults } from "./storage.js";
-import { isTimeUp } from "./timer.js";
+import { isTimeUp } from "../core/timer.js";
 
 const resultsTable = document.getElementById("results-table");
 const resultsEvaluation = document.getElementById("results-evaluation");
