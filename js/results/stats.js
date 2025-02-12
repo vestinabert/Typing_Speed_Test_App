@@ -28,7 +28,7 @@ export function processInput(key) {
         currentLetterIndex++;
         totalCharsTyped++;
 
-
+        // If the user has completed the current word
         if (currentLetterIndex === letters.length) {
             let allCorrect = Array.from(letters).every(letter => letter.classList.contains("correct"));
 
@@ -40,7 +40,7 @@ export function processInput(key) {
                 correctWords++;
             }
 
-
+            // Move to the next word if available
             if (currentWordIndex < words.length) {
                 words[currentWordIndex].classList.add("current");
                 words[currentWordIndex].querySelector(".letter").classList.add("current");
@@ -54,6 +54,7 @@ export function processInput(key) {
 }
 
 export function processBackspace() {
+    // Prevent backspacing beyond the first letter
     if (currentLetterIndex === 0 && currentWordIndex === 0) {
         return;
     }
@@ -62,7 +63,7 @@ export function processBackspace() {
     let currentWord = words[currentWordIndex];
     let letters = currentWord.querySelectorAll(".letter");
 
-    // If backspacing at the start of a word, move to the previous word
+    // Handle backspace at the start of a word: move to the previous word
     if (currentLetterIndex === 0) {
         currentWord.classList.remove("current");
 
@@ -84,7 +85,7 @@ export function processBackspace() {
     letter.classList.remove("correct", "incorrect", "current");
     totalCharsTyped--;
 
-    letter.classList.add("current");
+    letter.classList.add("current"); // Mark the backtracked letter as current
 
     scroll();
 }
@@ -96,7 +97,7 @@ export function resetStats() {
     currentWordIndex = 0;
     currentLetterIndex = 0;
 
-    // Remove all classes from words and letters
+    // Remove all visual markers from words and letters
     document.querySelectorAll(".word").forEach(word => word.classList.remove("current"));
     document.querySelectorAll(".letter").forEach(letter => letter.classList.remove("correct", "incorrect", "current"));
 }
