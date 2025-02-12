@@ -1,6 +1,6 @@
-import { getTimeLeft } from "./timer.js";
-import { TEST_DURATION } from "./config.js";
-import { getStats } from "./stats.js";
+import { getTimeLeft } from "../core/timer.js";
+import { TEST_DURATION } from "../config/config.js";
+import { getStats } from "../results/stats.js";
 
 const textDisplay = document.getElementById("text-display");
 const resultsEvaluation = document.getElementById("results-evaluation");
@@ -49,11 +49,7 @@ export function scroll() {
 
     const containerRect = textContainer.getBoundingClientRect();
     const letterRect = currentLetter.getBoundingClientRect();
-    console.log("currentLetter", currentLetter);
-    console.log("letterrectbottom", letterRect.bottom);
-    console.log("containerRectbottom", containerRect.bottom);
-    console.log("letterrecttop", letterRect.top);
-    console.log("containerRecttop", containerRect.top);
+
     if (letterRect.bottom > containerRect.bottom) {
         const offset = letterRect.bottom - containerRect.bottom + 10;
         adjustScroll(-offset);

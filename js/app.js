@@ -1,6 +1,6 @@
-import { setupEnterHandler, setupInputHandler } from "./inputHandler.js";
-import { setupSwitchToggle } from "./switchView.js";
-import { restartTest } from "./typingTest.js";
+import { setupEnterHandler, setupInputHandler } from "./core/inputHandler.js";
+import { setupSwitchToggle } from "./ui/switchView.js";
+import { restartTest } from "./core/typingTest.js";
 
 const restartButton = document.getElementById("restart");
 

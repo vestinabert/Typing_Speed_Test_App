@@ -1,8 +1,8 @@
-import { processInput, processBackspace } from "./stats.js";
-import { updateCursor } from "./ui.js";
+import { processInput, processBackspace } from "../results/stats.js";
+import { updateCursor } from "../ui/ui.js";
 import { isTimeUp } from "./timer.js";
 import { restartTest, resetTest } from "./typingTest.js";
-import { switchToTestView } from "./switchView.js";
+import { switchToTestView } from "../ui/switchView.js";
 
 const textContainer = document.getElementById("text-container");
 

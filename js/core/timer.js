@@ -1,7 +1,7 @@
-import { saveResults } from "./storage.js";
-import { TEST_DURATION } from "./config.js";
-import { disableCursor, updateStats } from "./ui.js";
-import { switchToResultsView } from "./switchView.js";
+import { saveResults } from "../results/storage.js";
+import { TEST_DURATION } from "../config/config.js";
+import { disableCursor, updateStats } from "../ui/ui.js";
+import { switchToResultsView } from "../ui/switchView.js";
 
 const timeDisplay = document.getElementById("time");
 
