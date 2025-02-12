@@ -1,4 +1,3 @@
-import { updateStats } from "./ui.js";
 import { scroll } from "./ui.js";
 import { startTimer } from "./timer.js";
 
@@ -7,9 +6,6 @@ let currentLetterIndex = 0;
 let correctChars = 0;
 let totalCharsTyped = 0;
 let correctWords = 0;
-
-const wpmDisplay = document.getElementById("wpm");
-const accuracyDisplay = document.getElementById("accuracy");
 
 export function processInput(key) {
     startTimer();
@@ -54,8 +50,6 @@ export function processInput(key) {
         }
     }
 
-
-    updateStats(wpmDisplay, accuracyDisplay, correctChars, totalCharsTyped, correctWords);
     scroll();
 }
 
@@ -92,7 +86,6 @@ export function processBackspace() {
 
     letter.classList.add("current");
 
-    updateStats(wpmDisplay, accuracyDisplay, correctChars, totalCharsTyped, correctWords);
     scroll();
 }
 
@@ -106,4 +99,12 @@ export function resetStats() {
     // Remove all classes from words and letters
     document.querySelectorAll(".word").forEach(word => word.classList.remove("current"));
     document.querySelectorAll(".letter").forEach(letter => letter.classList.remove("correct", "incorrect", "current"));
+}
+
+export function getStats() {
+    return {
+        totalCharsTyped,
+        correctChars,
+        correctWords
+    };
 }

@@ -1,5 +1,6 @@
 import { getTimeLeft } from "./timer.js";
 import { TEST_DURATION } from "./config.js";
+import { getStats } from "./stats.js";
 
 const textDisplay = document.getElementById("text-display");
 const resultsEvaluation = document.getElementById("results-evaluation");
@@ -15,7 +16,8 @@ export function resetUI() {
     textDisplay.style.transform = "translateY(0px)";
 }
 
-export function updateStats(wpmDisplay, accuracyDisplay, correctChars, totalCharsTyped, correctWords) {
+export function updateStats() {
+    const { correctChars, totalCharsTyped, correctWords } = getStats();
     const elapsedTime = TEST_DURATION - getTimeLeft();
     const accuracy = totalCharsTyped > 0 ? Math.round((correctChars / totalCharsTyped) * 100) : 0;
     const wpm = elapsedTime > 0 ? Math.round((correctWords * 60) / elapsedTime) : 0;
