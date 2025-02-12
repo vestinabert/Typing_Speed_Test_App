@@ -13,8 +13,6 @@ export async function startTest() {
     textDisplay.innerHTML = originalText
         .map(word => `<div class="word">${word.split("").map(char => `<span class="letter">${char}</span>`).join("")}</div>`)
         .join(" ");
-
-    resetStats();
 }
 
 export function getOriginalText() {

@@ -19,7 +19,6 @@ export function loadResults() {
 }
 
 export function clearPerformanceEvaluation() {
-    console.log("clearPerformanceEvaluation");
     resultsEvaluation.textContent = "";
 }
 

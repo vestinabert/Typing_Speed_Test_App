@@ -47,7 +47,7 @@ export function scrollIfNeeded() {
     }
 }
 
-export function adjustScroll(offset) {
+function adjustScroll(offset) {
     const style = window.getComputedStyle(textDisplay);
     const matrix = new DOMMatrixReadOnly(style.transform);
     let currentTranslateY = matrix.m42;

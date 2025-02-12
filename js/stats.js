@@ -35,7 +35,6 @@ export function processInput(key) {
     else {
         console.log("processInput else");
     }
-    if (key === " ") checkWordCompletion();
 
     updateStats(wpmDisplay, accuracyDisplay, correctChars, totalCharsTyped, correctWords);
     scrollIfNeeded();
@@ -63,15 +62,6 @@ export function processBackspace() {
     currentLetterSpan.classList.add("current");
 
     updateStats(wpmDisplay, accuracyDisplay, correctChars, totalCharsTyped, correctWords);
-}
-
-function checkWordCompletion() {
-    const originalWords = getOriginalText().split(" ");
-    const typedWords = textDisplay.textContent.slice(0, currentIndex).split(" ");
-
-    if (typedWords.length > correctWords && typedWords[correctWords] === originalWords[correctWords]) {
-        correctWords++;
-    }
 }
 
 export function resetStats() {
