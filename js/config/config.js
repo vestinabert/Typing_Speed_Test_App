@@ -1,1 +1,1 @@
-export const TEST_DURATION = 30;
+export const TEST_DURATION = 60;

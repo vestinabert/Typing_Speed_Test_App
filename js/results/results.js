@@ -5,7 +5,6 @@ const resultsTable = document.getElementById("results-table");
 const resultsEvaluation = document.getElementById("results-evaluation");
 
 export function loadResults() {
-    console.log("loadResults");
     resultsTable.innerHTML = "";
     const results = getResults();
 
