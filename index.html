@@ -11,7 +11,7 @@
 
 <body>
     <div class="container d-flex flex-column align-items-center justify-content-center min-vh-100">
-        <div class="card shadow p-4 text-center" style="max-width: 650px; width: 100%;">
+        <div class="card shadow p-4 m-4 text-center" style="max-width: 650px; width: 100%;">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h1 class="mb-0">Typing Speed Test</h1>
 
@@ -30,12 +30,20 @@
                     <p class="mb-0">🎯 Accuracy: <span id="accuracy">0%</span></p>
                 </div>
 
-                <div id="text-container" tabindex="0">
+                <div id="text-container" class="my-4" tabindex="0">
                     <div id="text-display"></div>
                     <div id="cursor"></div>
                 </div>
 
-                <button id="restart" class="btn btn-primary mt-3">Restart</button>
+                <button id="restart" class="btn btn-primary mb-4">Restart</button>
+                <p class="text-muted fst-italic">
+                    Type the text as fast and accurately as possible in 60 seconds. Correct letters turn green,
+                    incorrect ones red.
+                    Use Backspace to fix mistakes. Only fully correct words count. Press "Enter" to restart and "Esc" to
+                    reset.
+                </p>
+
+
             </div>
 
             <!-- Results View (Hidden by Default) -->

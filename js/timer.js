@@ -1,6 +1,6 @@
 import { saveResults } from "./storage.js";
 import { TEST_DURATION } from "./config.js";
-import { disableCursor } from "./ui.js";
+import { disableCursor, updateStats } from "./ui.js";
 import { switchToResultsView } from "./switchView.js";
 
 const timeDisplay = document.getElementById("time");
@@ -15,6 +15,7 @@ export function startTimer() {
 
     interval = setInterval(() => {
         timeLeft--;
+        updateStats();
         timeDisplay.textContent = timeLeft;
         if (isTimeUp()) {
             clearInterval(interval);

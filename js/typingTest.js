@@ -1,18 +1,36 @@
 import { fetchText } from "./api.js";
 import { resetStats } from "./stats.js";
+import { resetTimer } from "./timer.js";
+import { resetUI, updateCursor } from "./ui.js";
 
 const textContainer = document.getElementById("text-container");
 const textDisplay = document.getElementById("text-display");
 
 let originalText = "";
 
+// Resets and starts a new test
+export async function restartTest() {
+    await startTest();
+    resetTest();
+}
+// Resets test
+export function resetTest() {
+    resetTimer();
+    resetStats();
+    highlightFirstWord();
+    highlightFirstLetter();
+    focusTypingArea();
+    resetUI();
+    updateCursor();
+}
+
 export async function startTest() {
     originalText = await fetchText();
-    textDisplay.innerHTML = originalText.split("")
-        .map(char => `<span class="letter">${char}</span>`)
-        .join("");
 
-    resetStats();
+    // Wrap each word in a <div class="word"> and each letter in <span class="letter">
+    textDisplay.innerHTML = originalText
+        .map(word => `<div class="word">${word.split("").map(char => `<span class="letter">${char}</span>`).join("")}</div>`)
+        .join(" ");
 }
 
 export function getOriginalText() {
@@ -24,6 +42,14 @@ export function focusTypingArea() {
 }
 
 export function highlightFirstLetter() {
-    console.log("highlightFirstLetter");
-    textDisplay.firstChild?.classList.add("current");
+    const firstLetter = document.querySelector(".word:first-child .letter:first-child");
+    if (firstLetter) {
+        firstLetter.classList.add("current");
+    }
+}
+export function highlightFirstWord() {
+    const firstWord = document.querySelector(".word:first-child");
+    if (firstWord) {
+        firstWord.classList.add("current");
+    }
 }
