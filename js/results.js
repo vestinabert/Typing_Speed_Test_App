@@ -18,10 +18,6 @@ export function loadResults() {
     if (isTimeUp()) evaluatePerformance(latestResult, results);
 }
 
-export function clearPerformanceEvaluation() {
-    resultsEvaluation.textContent = "";
-}
-
 function evaluatePerformance(latestResult, previousResults) {
     const wpm = parseInt(latestResult.wpm, 10);
     let comparison = "";

@@ -1,8 +1,18 @@
 import { getTimeLeft } from "./timer.js";
 import { TEST_DURATION } from "./config.js";
 
-const textContainer = document.getElementById("text-container");
 const textDisplay = document.getElementById("text-display");
+const resultsEvaluation = document.getElementById("results-evaluation");
+const textContainer = document.getElementById("text-container");
+const wpmDisplay = document.getElementById("wpm");
+const accuracyDisplay = document.getElementById("accuracy");
+
+export function resetUI() {
+    wpmDisplay.textContent = 0;
+    accuracyDisplay.textContent = "0%";
+    updateCursor();
+    resultsEvaluation.textContent = "";
+}
 
 export function updateStats(wpmDisplay, accuracyDisplay, correctChars, totalCharsTyped, correctWords) {
     const elapsedTime = TEST_DURATION - getTimeLeft();
@@ -12,7 +22,7 @@ export function updateStats(wpmDisplay, accuracyDisplay, correctChars, totalChar
     accuracyDisplay.textContent = `${accuracy}%`;
 }
 
-export function updateCursor(textContainer) {
+export function updateCursor() {
     const cursor = document.getElementById("cursor");
     if (!cursor) return;
 
@@ -30,7 +40,7 @@ export function updateCursor(textContainer) {
 export function disableCursor() {
     cursor.style.display = "none";
 }
-export function scrollIfNeeded() {
+export function scroll() {
     const currentLetter = document.querySelector(".letter.current");
     if (!currentLetter) return;
 

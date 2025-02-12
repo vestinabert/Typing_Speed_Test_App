@@ -1,6 +1,7 @@
 import { processInput, processBackspace } from "./stats.js";
 import { updateCursor } from "./ui.js";
 import { isTimeUp } from "./timer.js";
+
 const textContainer = document.getElementById("text-container");
 
 function handleTypingInput(e) {
@@ -12,7 +13,7 @@ function handleTypingInput(e) {
         processBackspace();
     }
 
-    updateCursor(textContainer);
+    updateCursor();
 }
 
 export function setupInputHandler() {
