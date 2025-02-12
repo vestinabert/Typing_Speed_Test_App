@@ -12,6 +12,7 @@ export function resetUI() {
     accuracyDisplay.textContent = "0%";
     updateCursor();
     resultsEvaluation.textContent = "";
+    textDisplay.style.transform = "translateY(0px)";
 }
 
 export function updateStats(wpmDisplay, accuracyDisplay, correctChars, totalCharsTyped, correctWords) {
