@@ -23,14 +23,14 @@ div.word{
     display: inline-block;
 }
 .word.current {
-    color: blue;
+    color: #003dd6;
 }
 .letter.correct {
-    color: green;
+    color: #08850c;
 }
 
 .letter.incorrect {
-    color: red;
+    color: #E53935;
 }
 
 #text-container {

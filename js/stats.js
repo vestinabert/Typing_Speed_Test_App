@@ -56,8 +56,6 @@ export function processInput(key) {
 
 
     updateStats(wpmDisplay, accuracyDisplay, correctChars, totalCharsTyped, correctWords);
-
-
     scroll();
 }
 
@@ -95,6 +93,7 @@ export function processBackspace() {
     letter.classList.add("current");
 
     updateStats(wpmDisplay, accuracyDisplay, correctChars, totalCharsTyped, correctWords);
+    scroll();
 }
 
 export function resetStats() {
