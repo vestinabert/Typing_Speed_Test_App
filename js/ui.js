@@ -25,8 +25,11 @@ export function updateCursor(textContainer) {
         cursor.style.left = (letterRect.left - containerRect.left) + "px";
         cursor.style.display = "block";
     } else {
-        cursor.style.display = "none";
+        disableCursor();
     }
+}
+export function disableCursor() {
+    cursor.style.display = "none";
 }
 export function scrollIfNeeded() {
     const currentLetter = document.querySelector(".letter.current");

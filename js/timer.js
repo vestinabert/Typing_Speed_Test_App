@@ -1,5 +1,7 @@
 import { saveResults } from "./storage.js";
 import { TEST_DURATION } from "./config.js";
+import { disableCursor } from "./ui.js";
+import { switchToResultsView } from "./switchView.js";
 
 const timeDisplay = document.getElementById("time");
 
@@ -16,7 +18,9 @@ export function startTimer() {
         timeDisplay.textContent = timeLeft;
         if (isTimeUp()) {
             clearInterval(interval);
+            disableCursor();
             saveResults();
+            switchToResultsView();
         }
     }, 1000);
 }
