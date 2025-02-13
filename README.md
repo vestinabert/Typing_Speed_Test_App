@@ -24,8 +24,7 @@ Here are some screenshots showcasing the application:
    ```sh
    git clone https://github.com/vestinabert/Typing_Speed_Test_App.git
    ```
-2. Navigate to the project directory:
-3. Open `index.html` in a web browser.
+2. Run the project using Live Server in VS Code
 
 ## Project Structure
 ```
