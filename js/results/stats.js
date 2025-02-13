@@ -14,6 +14,7 @@ export function processInput(key) {
     const currentWord = words[currentWordIndex];
     const letters = currentWord.querySelectorAll(".letter");
 
+    // Check if the user hasn't completed the current word
     if (currentLetterIndex < letters.length) {
         const expectedChar = letters[currentLetterIndex].textContent;
 
@@ -36,8 +37,9 @@ export function processInput(key) {
             currentWordIndex++;
             currentLetterIndex = 0;
 
-            if (allCorrect) {
+            if (allCorrect && !currentWord.classList.contains("correct-word")) {
                 correctWords++;
+                currentWord.classList.add("correct-word"); // Add the class to prevent recounting
             }
 
             // Move to the next word if available
