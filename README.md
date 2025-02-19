@@ -47,6 +47,7 @@ typing-speed-test
 │   ├── config/
 │   │   ├── config.js # Configuration settings (e.g., test duration)
 │   ├── core/
+│   │   ├── elements.js  # Stores DOM elements
 │   │   ├── typingTest.js  # Manages test start, reset, and UI updates
 │   │   ├── timer.js       # Manages the 60-second countdown
 │   │   ├── inputHandler.js # Handles user input and key events
