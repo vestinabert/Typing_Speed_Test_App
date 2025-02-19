@@ -24,7 +24,16 @@ Here are some screenshots showcasing the application:
    ```sh
    git clone https://github.com/vestinabert/Typing_Speed_Test_App.git
    ```
-2. Run the project using Live Server in VS Code
+2. Open the project in VS Code
+
+3. Launch the app using Live Server:
+
+This project is designed to be run in a browser. The easiest way to do this is by using the Live Server extension in VS Code:
+
+- Install the Live Server extension from the VS Code marketplace (if you haven't already).
+- Open index.html in VS Code.
+- Right-click inside the editor and select "Open with Live Server".
+- The app will launch in your default web browser.
 
 ## Project Structure
 ```
