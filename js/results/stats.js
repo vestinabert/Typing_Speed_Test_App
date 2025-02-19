@@ -1,5 +1,5 @@
 import { scroll } from "../ui/ui.js";
-import { startTimer } from "../core/timer.js";
+import { startTimer, stopApp } from "../core/timer.js";
 
 let currentWordIndex = 0;
 let currentLetterIndex = 0;
@@ -46,6 +46,9 @@ export function processInput(key) {
             if (currentWordIndex < words.length) {
                 words[currentWordIndex].classList.add("current");
                 words[currentWordIndex].querySelector(".letter").classList.add("current");
+            }
+            else {
+                stopApp();
             }
         } else {
             letters[currentLetterIndex].classList.add("current");

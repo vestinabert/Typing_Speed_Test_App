@@ -3,8 +3,7 @@ import { updateCursor } from "../ui/ui.js";
 import { isTimeUp } from "./timer.js";
 import { restartTest, resetTest } from "./typingTest.js";
 import { switchToTestView } from "../ui/switchView.js";
-
-const textContainer = document.getElementById("text-container");
+import { textContainer } from "./elements.js"
 
 function handleTypingInput(e) {
     if (isTimeUp()) return;

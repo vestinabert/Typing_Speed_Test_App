@@ -2,8 +2,7 @@ import { saveResults } from "../results/storage.js";
 import { TEST_DURATION } from "../config/config.js";
 import { disableCursor, updateStats } from "../ui/ui.js";
 import { switchToResultsView } from "../ui/switchView.js";
-
-const timeDisplay = document.getElementById("time");
+import { timeDisplay } from "../core/elements.js"
 
 let timeLeft = TEST_DURATION;
 let interval = null;
@@ -18,14 +17,16 @@ export function startTimer() {
         updateStats();
         timeDisplay.textContent = timeLeft;
         if (isTimeUp()) {
-            clearInterval(interval);
-            disableCursor();
-            saveResults();
-            switchToResultsView();
+            stopApp();
         }
     }, 1000);
 }
-
+export function stopApp() {
+    clearInterval(interval);
+    disableCursor();
+    saveResults();
+    switchToResultsView();
+}
 export function isTimeUp() {
     return timeLeft <= 0;
 }

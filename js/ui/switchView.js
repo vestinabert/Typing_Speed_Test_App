@@ -1,9 +1,6 @@
 import { loadResults } from "../results/results.js";
 import { focusTypingArea } from "../core/typingTest.js";
-
-const switchToggle = document.getElementById("view-switch");
-const testView = document.getElementById("test-view");
-const resultsView = document.getElementById("results-view");
+import { switchToggle, testView, resultsView } from "../core/elements.js";
 
 export function setupSwitchToggle() {
     switchToggle.addEventListener("change", () => {

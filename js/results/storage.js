@@ -1,6 +1,8 @@
+import { wpmDisplay, accuracyDisplay } from "../core/elements.js";
+
 export function saveResults() {
-    const wpm = document.getElementById("wpm").textContent;
-    const accuracy = document.getElementById("accuracy").textContent;
+    const wpm = wpmDisplay.textContent;
+    const accuracy = accuracyDisplay.textContent;
     const results = getResults();
 
     // Format date as YYYY-MM-DD HH:MM

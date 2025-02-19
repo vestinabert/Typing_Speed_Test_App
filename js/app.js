@@ -1,10 +1,14 @@
 import { setupEnterHandler, setupInputHandler } from "./core/inputHandler.js";
 import { setupSwitchToggle } from "./ui/switchView.js";
 import { restartTest } from "./core/typingTest.js";
+import { restartButton } from "./core/elements.js"
 
-const restartButton = document.getElementById("restart");
+document.addEventListener("DOMContentLoaded", function () {
 
-// Initializes the app
+    initApp();
+
+});
+
 function initApp() {
     setupSwitchToggle();
     setupEnterHandler();
@@ -12,5 +16,3 @@ function initApp() {
     restartButton.addEventListener("click", restartTest);
     restartTest();
 }
-
-initApp();

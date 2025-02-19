@@ -2,9 +2,7 @@ import { fetchText } from "../api/api.js";
 import { resetStats } from "../results/stats.js";
 import { resetTimer } from "./timer.js";
 import { resetUI, updateCursor } from "../ui/ui.js";
-
-const textContainer = document.getElementById("text-container");
-const textDisplay = document.getElementById("text-display");
+import { textDisplay, textContainer } from "../core/elements.js"
 
 let originalText = "";
 

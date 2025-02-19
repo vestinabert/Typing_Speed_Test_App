@@ -1,12 +1,7 @@
 import { getTimeLeft } from "../core/timer.js";
 import { TEST_DURATION } from "../config/config.js";
 import { getStats } from "../results/stats.js";
-
-const textDisplay = document.getElementById("text-display");
-const resultsEvaluation = document.getElementById("results-evaluation");
-const textContainer = document.getElementById("text-container");
-const wpmDisplay = document.getElementById("wpm");
-const accuracyDisplay = document.getElementById("accuracy");
+import { textDisplay, textContainer, resultsEvaluation, wpmDisplay, accuracyDisplay } from "../core/elements.js";
 
 export function resetUI() {
     wpmDisplay.textContent = 0;

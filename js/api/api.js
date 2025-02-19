@@ -4,6 +4,6 @@ export async function fetchText() {
         const data = await response.json();
         return data;
     } catch (error) {
-        return "This is a fallback text for testing. Fetching from API failed.";
+        return "This is a fallback text for testing. Fetching from API failed.".split(" ");
     }
 }
